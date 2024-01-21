@@ -4,12 +4,16 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import "@/app/globals.css"
 import { FeedbackCard, Header, CursorSVG } from "@/components"
+import { getRandomCaseFromSystem } from "@/utils/tools";
+import { BioSystemTypes } from "@/types/biologic_systems";
+import { BIOLOGICAL_SYSTEMS } from "@/constants/biologic_systems";
 
 export default function page(){
     const searchParams = useSearchParams()
-    const SELECTED_SYSTEM = searchParams.get('system')
-
+    const SELECTED_SYSTEM:BioSystemTypes = searchParams.get('system') as BioSystemTypes
     const tutorQuestion = "Question 1 : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, dolorum! Commodi necessitatibus perferendis quasi temporibus repudiandae officiis facere soluta dolor sunt asperiores, aliquid beatae, consequuntur quia natus, amet quas cum."
+
+    const [currentCase, setCurrentCase] = useState<any>();
     const [currentQuestion, setCurrentQuestion] = useState<string>(tutorQuestion);
     const [displayQuestion, setDisplayQuestion] = useState<string>("");
     const [completedTyping, setCompletedTyping] = useState<boolean>(false);
@@ -36,7 +40,12 @@ export default function page(){
         }, 20);
     
         return () => clearInterval(intervalId);
-      }, [currentQuestion]);
+    }, [currentQuestion]);
+
+    useEffect(() => {
+        const selectedCase:any = getRandomCaseFromSystem(SELECTED_SYSTEM)
+        setCurrentCase(selectedCase)
+    }, [SELECTED_SYSTEM]);
 
       
     return (

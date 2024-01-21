@@ -1,0 +1,1 @@
+export {default as Paludism} from "./paludism.case"
