@@ -1,0 +1,1 @@
+export {default as CalculsBiliaires} from "./calculsbiliaires.case"

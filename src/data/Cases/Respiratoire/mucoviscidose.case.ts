@@ -1,5 +1,5 @@
 const Mucoviscidose = {
-  desease: "Mucoviscidose",
+  disease: "Mucoviscidose",
   biologic_system: "Systeme respiratoire",
   anamèse: {
     patient: {

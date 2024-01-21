@@ -3,20 +3,28 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import "@/app/globals.css"
-import { FeedbackCard, Header, CursorSVG } from "@/components"
-import { getRandomCaseFromSystem } from "@/utils/tools";
+import { 
+    FeedbackCard,
+    Header,
+    CursorSVG,
+    OptionList 
+} from "@/components"
+import { getRandomCaseFromSystem, patientInfoFromObj, getRandomOptions } from "@/utils/tools";
 import { BioSystemTypes } from "@/types/biologic_systems";
-import { BIOLOGICAL_SYSTEMS } from "@/constants/biologic_systems";
+import { IQuestionsWithID } from "@/types/questions";
 
 export default function page(){
     const searchParams = useSearchParams()
     const SELECTED_SYSTEM:BioSystemTypes = searchParams.get('system') as BioSystemTypes
     const tutorQuestion = "Question 1 : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, dolorum! Commodi necessitatibus perferendis quasi temporibus repudiandae officiis facere soluta dolor sunt asperiores, aliquid beatae, consequuntur quia natus, amet quas cum."
-
+ 
     const [currentCase, setCurrentCase] = useState<any>();
-    const [currentQuestion, setCurrentQuestion] = useState<string>(tutorQuestion);
+    const [patientProfile, setPatientProfile] = useState();
     const [displayQuestion, setDisplayQuestion] = useState<string>("");
     const [completedTyping, setCompletedTyping] = useState<boolean>(false);
+    const [currentQuestion, setCurrentQuestion] = useState<string>();
+    const [currentOptionList, setCurrentOptionList] = useState<Array<IQuestionsWithID>>();
+    const [selectedOption, setSelectedOption] = useState<IQuestionsWithID>();
 
     useEffect(() => {
         if (!currentQuestion?.length) {
@@ -44,10 +52,20 @@ export default function page(){
 
     useEffect(() => {
         const selectedCase:any = getRandomCaseFromSystem(SELECTED_SYSTEM)
-        setCurrentCase(selectedCase)
+        // console.log(selectedCase)
+        if(selectedCase!=undefined){
+            setCurrentCase(selectedCase)
+            setPatientProfile(selectedCase.anamèse.patient)
+            // console.log(selectedCase.anamèse.patient)
+            const profileInfo = patientInfoFromObj(selectedCase.anamèse.patient)
+            const tempQuestion = `${profileInfo}. En tant que médecin apprenant, veuillez choisir la question la plus appropriée pour débuter l'anamnèse et recueillir des informations essentielles pour établir un diagnostic préliminaire.`
+            setCurrentQuestion(tempQuestion)
+            const tempOptions = getRandomOptions(4,[0,1,2,3])
+            setCurrentOptionList(tempOptions)
+        }
     }, [SELECTED_SYSTEM]);
 
-      
+    
     return (
     <div className="w-screen h-screen flex flex-col">
         <Header/>
@@ -59,33 +77,22 @@ export default function page(){
 
             <div className="w-full h-full p-2 rounded-lg flex flex-col">
                 {/* Zone d'Interaction - Question et Choix */}
-                <span className="w-full text-center font-bold text-lg">Zone d'Interaction</span>
+                <span className="w-full text-center font-bold drop-shadow-md text-google-blue text-3xl">{"Apprentissage lié au "}{SELECTED_SYSTEM}</span>
+                {/* <span className="">{currentCase!=undefined && currentCase.disease}</span> */}
+                {/* <span className="w-full text-center font-bold text-lg">Zone d'Interaction</span> */}
                 <div className="w-full h-full px-3 mt-8 flex flex-col gap-2">
-                    <div className="rounded-lg p-2 bg-white border-2 border-google-blue shadow-md drop-shadow-md">
+                    {currentQuestion!=undefined && <div className="rounded-lg p-2 bg-white border-2 border-google-blue shadow-md drop-shadow-md">
                         <span className="font-semibold">
                         {displayQuestion}
                         {!completedTyping && <CursorSVG />}
                         </span>
-                    </div>
+                    </div>}
                     
-                    <div className="w-full h-full flex flex-col gap-3 justify-center">
-                        <div className="w-full flex flex-row gap-2">
-                            <input type="checkbox" name="choice1" id="choice1" className="w-[50px] aspect-square"/>
-                            <span className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur corporis odio nulla incidunt quaerat, reprehenderit culpa molestias repudiandae iure error minima nisi quis rerum rem quas, ab enim aut cum.</span>
-                        </div>
-                        <div className="w-full flex flex-row gap-2">
-                            <input type="checkbox" name="choice2" id="choice2" className="w-[50px] aspect-square"/>
-                            <span className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur corporis odio nulla incidunt quaerat, reprehenderit culpa molestias repudiandae iure error minima nisi quis rerum rem quas, ab enim aut cum.</span>
-                        </div>
-                        <div className="w-full flex flex-row gap-2">
-                            <input type="checkbox" name="choice3" id="choice3" className="w-[50px] aspect-square"/>
-                            <span className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur corporis odio nulla incidunt quaerat, reprehenderit culpa molestias repudiandae iure error minima nisi quis rerum rem quas, ab enim aut cum.</span>
-                        </div>
-                        <div className="w-full flex flex-row gap-2">
-                            <input type="checkbox" name="choice4" id="choice4" className="w-[50px] aspect-square"/>
-                            <span className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur corporis odio nulla incidunt quaerat, reprehenderit culpa molestias repudiandae iure error minima nisi quis rerum rem quas, ab enim aut cum.</span>
-                        </div>
-                    </div>
+                    <OptionList
+                        optionList={currentOptionList}
+                        setSelectedOption={setSelectedOption}
+                    />
+                    
                 </div>
                 <div className="w-full px-5">
                     <button type="button" className="w-full py-3 rounded-xl bg-primary-blue font-bold text-white hover:scale-[105%] hover:shadow-md hover:drop-shadow-md">Valider</button>            

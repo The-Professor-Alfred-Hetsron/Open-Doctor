@@ -1,4 +1,6 @@
-export const QUESTIONS = [
+import { IQuestionsWithID } from "@/types/questions"
+
+export const ANAMESE_QUESTIONS = [
     {
         parent:"medical_history",
         key:"past_illnesses",
@@ -15,7 +17,7 @@ export const QUESTIONS = [
         question: "Avez-vous des antécédents médicaux familiaux importants ? Si oui, pourriez-vous me donner des informations sur les problèmes de santé de vos parents ?",
     },
     {
-        parent: "siblings",
+        parent: "family_history",
         key:"siblings",
         question: "Avez-vous des antécédents médicaux familiaux importants ? Si oui, pourriez-vous me donner des informations sur les problèmes de santé de vos frères et sœurs ?",
     },
@@ -136,6 +138,13 @@ export const QUESTIONS = [
     }
 ]
 
-export const QUESTIONS_WITH_ID = QUESTIONS.map((question, index)=>{
+export const QUESTIONS_WITH_ID = ANAMESE_QUESTIONS.map((question, index)=>{
     return {id:index, ...question}
 })
+
+export const EMPTY_QUESTION_OBJECT:IQuestionsWithID = {
+    id:0,
+    parent: "",
+    key:"",
+    question:""
+}

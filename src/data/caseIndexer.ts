@@ -7,12 +7,16 @@ import {
     LungCancer
 } from "./Cases/Respiratoire";
 
+import { 
+    CalculsBiliaires
+} from "./Cases/Digestif";
+
 export const CardiovascularCases:Array<any> = [
     Paludism
 ]
 
 export const DigestiveCases:Array<any> = [
-    
+    CalculsBiliaires
 ]
 
 export const RespiratoryCases:Array<any> = [

@@ -1,5 +1,5 @@
 const LungCancer = {
-  desease: "Cancer des poumons",
+  disease: "Cancer des poumons",
   biologic_system: "Systeme respiratoire",
   anamèse: {
     patient: {

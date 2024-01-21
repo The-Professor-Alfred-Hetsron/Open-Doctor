@@ -2,5 +2,6 @@
 export {default as BiologicalSystemCard} from "./Cards/BiologicalSystemCard"
 export {default as Header} from "./Header"
 export {default as FeedbackCard} from "./Cards/FeedbackCard"
+export {default as OptionList} from "./OptionList"
 
 export {default as CursorSVG} from "./CursorSVG"
