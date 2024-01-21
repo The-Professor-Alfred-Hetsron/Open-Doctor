@@ -114,7 +114,7 @@ export const ANAMESE_QUESTIONS = [
     {
         parent: "social",
         key:"marital_status",
-        question: "Quel est votre statut matrimonial actuel ?Quel est votre statut matrimonial actuel ?",
+        question: "Quel est votre statut matrimonial actuel ?",
     },
     {
         parent: "social",
