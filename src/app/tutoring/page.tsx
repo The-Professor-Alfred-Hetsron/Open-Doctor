@@ -1,26 +1,31 @@
 "use client"
 
-import { FeedbackCard, Header, CursorSVG } from "@/components"
-import "@/app/globals.css"
 import { useEffect, useState } from "react";
+import { useSearchParams } from 'next/navigation'
+import "@/app/globals.css"
+import { FeedbackCard, Header, CursorSVG } from "@/components"
 
 export default function page(){
+    const searchParams = useSearchParams()
+    const SELECTED_SYSTEM = searchParams.get('system')
+
     const tutorQuestion = "Question 1 : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, dolorum! Commodi necessitatibus perferendis quasi temporibus repudiandae officiis facere soluta dolor sunt asperiores, aliquid beatae, consequuntur quia natus, amet quas cum."
-    const [displayResponse, setDisplayResponse] = useState<string>("");
+    const [currentQuestion, setCurrentQuestion] = useState<string>(tutorQuestion);
+    const [displayQuestion, setDisplayQuestion] = useState<string>("");
     const [completedTyping, setCompletedTyping] = useState<boolean>(false);
 
     useEffect(() => {
-        if (!tutorQuestion?.length) {
+        if (!currentQuestion?.length) {
           return;
         }
     
         setCompletedTyping(false);
     
         let i = 0;
-        const stringResponse = tutorQuestion;
+        const stringResponse = currentQuestion;
     
         const intervalId = setInterval(() => {
-          setDisplayResponse(stringResponse.slice(0, i));
+          setDisplayQuestion(stringResponse.slice(0, i));
     
           i++;
     
@@ -31,17 +36,17 @@ export default function page(){
         }, 20);
     
         return () => clearInterval(intervalId);
-      }, [tutorQuestion]);
+      }, [currentQuestion]);
 
       
     return (
     <div className="w-screen h-screen flex flex-col">
         <Header/>
         <div className="w-full h-full p-2 flex flex-row">
-            <div className="w-[800px] h-full p-2 rounded-lg shadow-md drop-shadow-md bg-tertiary-lightYellow flex flex-col">
-                {/* Carte du Patient Virtuel */}
+            {/* <div className="w-[800px] h-full p-2 rounded-lg shadow-md drop-shadow-md bg-tertiary-lightYellow flex flex-col">
+                Carte du Patient Virtuel 
                 <span className="w-full text-center font-bold text-lg">Carte du Patient Virtuel</span>
-            </div>
+            </div> */}
 
             <div className="w-full h-full p-2 rounded-lg flex flex-col">
                 {/* Zone d'Interaction - Question et Choix */}
@@ -49,7 +54,7 @@ export default function page(){
                 <div className="w-full h-full px-3 mt-8 flex flex-col gap-2">
                     <div className="rounded-lg p-2 bg-white border-2 border-google-blue shadow-md drop-shadow-md">
                         <span className="font-semibold">
-                        {displayResponse}
+                        {displayQuestion}
                         {!completedTyping && <CursorSVG />}
                         </span>
                     </div>
@@ -78,8 +83,8 @@ export default function page(){
                 </div>
             </div>
 
-            <div className="w-[800px] h-full bg-lightBlue p-2 rounded-lg shadow-md drop-shadow-md flex flex-col">
-                {/* Zone de Réponse et de Feedback */}
+            {/* <div className="w-[800px] h-full bg-lightBlue p-2 rounded-lg shadow-md drop-shadow-md flex flex-col">
+                Zone de Réponse et de Feedback
                 <span className="w-full text-center font-bold text-lg ">Zone de Réponse et de Feedback</span>
                 <div className="w-full h-full pr-2 rounded-scrollbar flex flex-col overflow-x-hidden overflow-y-auto">
                     
@@ -101,7 +106,7 @@ export default function page(){
                     </div>
 
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
   )
