@@ -1,0 +1,1 @@
+export {default as PSORIASIS} from "./psoriasis.case"

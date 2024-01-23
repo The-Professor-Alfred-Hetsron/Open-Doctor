@@ -288,3 +288,46 @@ export const EMPTY_QUESTION_OBJECT:IQuestionsWithID = {
         negative: ""
     }
 }
+
+
+export const SPECIAL_TUTOR_QUESTIONS:Array<IQuestionsWithID> = [
+    {
+        id:0,
+        ancestor:"",
+        parent: "",
+        key:"physical_examination",
+        question:"Souhaiteriez-vous effectuer un examen physique sur le patient virtuel pour recueillir des informations supplémentaires sur son état de santé ?",
+    },
+    {
+        id:1,
+        ancestor:"",
+        parent: "",
+        key:"laboratory_tests",
+        question:"Seriez-vous intéressé par la réalisation de tests de laboratoire sur le patient virtuel pour obtenir des données supplémentaires sur sa condition médicale ?",
+    },
+    {
+        id:2,
+        ancestor:"",
+        parent: "",
+        key:"hyposthèse",
+        question:"Après avoir examiné les informations sur le patient virtuel, pouvez-vous formuler une hypothèse concernant sa maladie probable ?",
+    }
+]
+
+
+export const SPECIAL_STUDENT_CHOICES:Array<IQuestionsWithID> = [
+    {
+        id:0,
+        ancestor:"",
+        parent: "",
+        key:"boolean",
+        question:"Oui",
+    },
+    {
+        id:1,
+        ancestor:"",
+        parent: "",
+        key:"boolean",
+        question:"Non",
+    }
+]

@@ -6,12 +6,12 @@ import {
     DigestiveCases,
     RespiratoryCases,
     NervousCases,
-    // EndocrineCases,
-    // ImmuneCases,
-    // MuscularCases,
-    // ReproductiveCases,
-    // SkeletalCases,
-    // UrinaryCases
+    EndocrineCases,
+    ImmuneCases,
+    MuscularCases,
+    ReproductiveCases,
+    SkeletalCases,
+    UrinaryCases
 } from "@/data/caseIndexer";
 import { KEYS_TRANSLATIONS } from "@/constants/caseQuestions";
 import { 
@@ -19,6 +19,7 @@ import {
     WOMAN_AVATAR_IMAGES
  } from "@/constants/avatars";
 import { GenderType } from "@/types/patient";
+import { SetStateAction } from "react";
 
 export const getRandomCaseFromSystem = (system:BioSystemTypes) => {
     let randIndex 
@@ -42,6 +43,36 @@ export const getRandomCaseFromSystem = (system:BioSystemTypes) => {
             randIndex = Math.floor(Math.random() * NervousCases.length-1) + 1;
             // console.log(randIndex)
             return NervousCases[randIndex]
+
+        case "Système Endocrinien":
+            randIndex = Math.floor(Math.random() * EndocrineCases.length-1) + 1;
+            // console.log(randIndex)
+            return EndocrineCases[randIndex]
+
+        case "Système Immunitaire":
+            randIndex = Math.floor(Math.random() * ImmuneCases.length-1) + 1;
+            // console.log(randIndex)
+            return ImmuneCases[randIndex]
+
+        case "Système Musculaire":
+            randIndex = Math.floor(Math.random() * MuscularCases.length-1) + 1;
+            // console.log(randIndex)
+            return MuscularCases[randIndex]
+
+        case "Système Reproducteur":
+            randIndex = Math.floor(Math.random() * ReproductiveCases.length-1) + 1;
+            // console.log(randIndex)
+            return ReproductiveCases[randIndex]
+
+        case "Système Squelettique":
+            randIndex = Math.floor(Math.random() * SkeletalCases.length-1) + 1;
+            // console.log(randIndex)
+            return SkeletalCases[randIndex]
+
+        case "Système Urinaire":
+            randIndex = Math.floor(Math.random() * UrinaryCases.length-1) + 1;
+            // console.log(randIndex)
+            return UrinaryCases[randIndex]
 
         default:
             return RespiratoryCases[1]
@@ -108,11 +139,6 @@ export const patientInfoFromObj = (obj:object) =>{
 }
 
 
-export const displayObjectAsString = (obj:object)=>{
-    if(obj!=undefined){
-
-    }
-}
 
 export const generateNext4PairesIndices = (index: number) => {
     const excludedArray:Array<number> = []
@@ -168,32 +194,36 @@ export const getPatientAnameseResponse = (question:IQuestionsWithID, anameseCase
     }
 }
 
-export const getValueFromType = (value: any) => {
+export const getStringValueFromType = (value: any) => {
     const typeOfVal = typeof value
     switch (typeOfVal) {
         case "number":
-            return value
+            return value as string
 
         case "string":
-            return value
+            return value as string
 
         case "object":
-            let str = ""
+            let str:string = ""
             if(Array.isArray(value) || (value instanceof Array)){
                 value.forEach((value)=>{
-                    str += `${getValueFromType(value)}, `
+                    str += `${getStringValueFromType(value)}, `
                 })
             }
             else if(value instanceof Object){
                 Object.entries(value).forEach(([key,value])=>{
                     const translatedKey = translateKey(key)
-                    str+=`${translatedKey}: ${getValueFromType(value)}, `
+                    if(translatedKey != undefined){
+                        str+=`${translatedKey}: ${getStringValueFromType(value)}, `
+                    }else{
+                        str+=`${key}: ${getStringValueFromType(value)}, `
+                    }
                 })
             }
-            return str
+            return str as string
         
         default:
-            return value
+            return value as string
     }
 }
 
@@ -222,4 +252,13 @@ export const refactorGender = (gender:GenderType) => {
         default:
             return "Male"
     }
+}
+
+
+
+export const validateFromRegEx = (value:string, regex: RegExp, setEntity:((value:SetStateAction<string>)=>void) | ((value:string)=>void)) => {
+    const IS_VALID = regex.test(value);
+    console.log(IS_VALID)
+    if(IS_VALID) setEntity(value)
+    return IS_VALID
 }

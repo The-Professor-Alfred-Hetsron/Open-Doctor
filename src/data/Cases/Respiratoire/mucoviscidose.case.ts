@@ -1,6 +1,6 @@
 const Mucoviscidose = {
   disease: "Mucoviscidose",
-  biologic_system: "Systeme respiratoire",
+  biologic_system: "Système Respiratoire",
   anamèse: {
     patient: {
       last_name: "EOJLD",

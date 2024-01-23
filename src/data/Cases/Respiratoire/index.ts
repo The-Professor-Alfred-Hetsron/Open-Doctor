@@ -1,2 +1,5 @@
 export {default as Mucoviscidose} from "./mucoviscidose.case"
 export {default as LungCancer} from "./lungCancer.case"
+export {default as BRONCHITE} from "./bronchite.case"
+export {default as PNEUMONIE} from "./pneumonie.case"
+export {default as SINUSITE} from "./sinusite.case"

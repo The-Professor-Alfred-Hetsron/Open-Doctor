@@ -6,11 +6,10 @@ import React, { useState } from 'react'
 interface PropsTypes{
     optionList:Array<IQuestionsWithID> | undefined
     setSelectedOption: (option: IQuestionsWithID) => void
-    disabled: boolean
 }
 
 const OptionList:React.FC<PropsTypes> = ({
-    optionList, setSelectedOption, disabled
+    optionList, setSelectedOption
 }) => {
     // console.log(optionList)
 

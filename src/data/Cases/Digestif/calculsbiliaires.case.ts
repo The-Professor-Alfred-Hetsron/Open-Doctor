@@ -1,6 +1,6 @@
 const CalculsBiliaires = {
   disease: "Calculs biliaires",
-  biologic_system: "Systeme digestif",
+  biologic_system: "Système Digestif",
   anamèse: {
     patient: {
       last_name: "EOJLD",

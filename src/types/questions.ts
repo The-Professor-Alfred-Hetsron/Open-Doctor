@@ -6,11 +6,12 @@ export interface IQuestionsWithID{
     key: string,
     question: string,
     id: number,
-    repoonse:{
+    repoonse?:{
         positive:string,
         negative: string
     }
 }
+
 
 export interface IStudentResponse{
     question: IQuestionsWithID,

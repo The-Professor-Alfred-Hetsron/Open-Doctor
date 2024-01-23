@@ -1,0 +1,1 @@
+export {default as NANISME} from "./nanisme.case"

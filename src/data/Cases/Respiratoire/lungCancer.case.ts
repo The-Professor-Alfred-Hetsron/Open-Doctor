@@ -1,15 +1,15 @@
 const LungCancer = {
   disease: "Cancer des poumons",
-  biologic_system: "Systeme respiratoire",
+  biologic_system: "Système Respiratoire",
   anamèse: {
     patient: {
       last_name: "EOJLD",
       first_name: "Elov",
-      date_of_birth: "1998-05-10",
-      gender: "F",
+      date_of_birth: "1999-05-10",
+      gender: "M",
       address: "Pharmacie EMIA, Melen",
       phone: "0123456789",
-      occupation: "Etudiante",
+      occupation: "Etudiant",
     },
     medical_history: {
       past_illnesses: [],
