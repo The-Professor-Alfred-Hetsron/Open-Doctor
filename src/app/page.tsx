@@ -8,7 +8,7 @@ import { BiologicalSystemCard } from "@/components"
 export default function Root() {
   const router = useRouter()
   return (
-    <main className="min-w-screen min-h-screen py-6 px-2 flex flex-col gap-8 items-center justify-center">
+    <main className="w-screen h-screen py-6 px-2 flex flex-col gap-8 items-center justify-between overflow-y-scroll">
       <span className="text-6xl">Bienvenue à <span className="text-primary-blue font-bold">{APP_NAME}</span></span>
       <span className="">Bien vouloir choisir le Système Biologique d'apprentissage</span>
 

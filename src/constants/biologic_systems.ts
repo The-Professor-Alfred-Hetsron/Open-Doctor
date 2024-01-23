@@ -58,7 +58,7 @@ export const BIOLOGICAL_SYSTEMS: IBioSystem[] = [
   },
   {
     id: 7,
-    name: "Système Skelettique",
+    name: "Système Squelettique",
     cases: SkeletalCases.length,
     difficulty: "MOYEN",
     image: "/assets/img/logo.png",

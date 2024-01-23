@@ -13,14 +13,14 @@ const Mucoviscidose = {
     },
     medical_history: {
       past_illnesses: [],
-      surgeries: [" "],
+      surgeries: [],
       family_history: {
         parents: [],
         siblings: [],
       },
     },
     symptoms: {
-      main: "Tout persistante avec du sang",
+      main: "Toux persistante avec du sang",
       associated: ["Hypertension pulmonaire", "sinusite", "essouflement"],
       onset_date: "2022-01-10",
       aggravating_factors: ["Constipation sévère", "puberté retardée"],

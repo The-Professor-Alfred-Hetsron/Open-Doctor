@@ -6,7 +6,7 @@ export interface IBioSystem {
     difficulty?: SystemDificultyTypes
 }
 
-export type BioSystemTypes = "Système Cardiovasculaire" | "Système Respiratoire" | "Système Digestif" | "Système Nerveux" | "Système Endocrinien" | "Système Musculaire" | "Système Skelettique" | "Système Immunitaire" | "Système Urinaire" | "Système Reproducteur"
+export type BioSystemTypes = "Système Cardiovasculaire" | "Système Respiratoire" | "Système Digestif" | "Système Nerveux" | "Système Endocrinien" | "Système Musculaire" | "Système Squelettique" | "Système Immunitaire" | "Système Urinaire" | "Système Reproducteur"
 
 export type SystemDificultyTypes = "FACILE" | "MOYEN" | "DIFFICILE"
 

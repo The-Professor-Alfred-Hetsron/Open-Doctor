@@ -31,7 +31,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c"/>
         <meta name="theme-color" content="#356BB3"/>
       </head>
-      <body className="min-w-screen min-h-screen m-0 p-0 font-poppins relative bg-background-white selection:bg-tertiary-lightYellow selection:text-primary-blue">
+      <body className="w-screen h-screen m-0 p-0 font-poppins relative bg-background-white selection:bg-tertiary-lightYellow selection:text-primary-blue overflow-hidden">
           {children}
       </body>
     </html>

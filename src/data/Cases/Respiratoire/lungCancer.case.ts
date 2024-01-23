@@ -13,7 +13,7 @@ const LungCancer = {
     },
     medical_history: {
       past_illnesses: [],
-      surgeries: [" "],
+      surgeries: [],
       family_history: {
         parents: [],
         siblings: [],

@@ -6,12 +6,15 @@ import React, { useState } from 'react'
 interface PropsTypes{
     optionList:Array<IQuestionsWithID> | undefined
     setSelectedOption: (option: IQuestionsWithID) => void
+    disabled: boolean
 }
 
 const OptionList:React.FC<PropsTypes> = ({
-    optionList, setSelectedOption
+    optionList, setSelectedOption, disabled
 }) => {
-    const [value, setValue] = useState<number>();
+    // console.log(optionList)
+
+    const [value, setValue] = useState<number>(-1);
 
     const handleOnOptionSelect = (val:number) => {
         // console.log(value)
@@ -26,7 +29,7 @@ const OptionList:React.FC<PropsTypes> = ({
     }
 
   return (
-    <div className="w-full h-full flex flex-col gap-3 justify-center">
+    <div className="w-full h-full py-4 flex flex-col gap-3 justify-center items-center">
         {
             optionList!=undefined && optionList.map((option:IQuestionsWithID, index:number)=>{
                 return <div key={index} className="w-full flex flex-row gap-2 items-center">
