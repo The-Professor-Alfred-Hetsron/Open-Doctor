@@ -31,7 +31,7 @@ const OptionList:React.FC<PropsTypes> = ({
     <div className="w-full h-full py-4 flex flex-col gap-3 justify-center items-center">
         {
             optionList!=undefined && optionList.map((option:IQuestionsWithID, index:number)=>{
-                return <div key={index} className="w-full flex flex-row gap-2 items-center">
+                return <div key={option.question+option.key+index} className="w-full flex flex-row gap-2 items-center">
                             <input
                                 type="checkbox"
                                 value={index}
